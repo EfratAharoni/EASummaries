@@ -5,7 +5,8 @@
 ## צפייה בפרויקט
 
 - Production: https://ea-summaries.vercel.app/
-- סרטון הדמיה: יתווסף בהמשך
+- הניתן לצפות בסרטון הדמיה של המערכת בקישור הבא:  
+👉 [לצפיה בסרטון ההדמיה](https://drive.google.com/file/d/1RcME27bll5jnAjJbamUoDzZT7SLRyCeV/view) 
 
 ## מה הרעיון של הפרויקט
 
