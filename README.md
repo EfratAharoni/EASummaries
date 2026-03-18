@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Summaries Site
 
-## Getting Started
+אתר Next.js להצגת סיכומים, המלצות וטיפים לסטודנטים.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router)
+- React
+- Tailwind CSS v4
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+האפליקציה תרוץ בכתובת:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- http://localhost:3001
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build Validation
 
-## Learn More
+```bash
+npm run lint
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Content Source
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+האתר עובד במצב תוכן מקומי בלבד (ללא בסיס נתונים).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- קבצי PDF נטענים מתוך: `public/pdfs`
+- כרטיסי הסיכומים נוצרים אוטומטית משמות קבצי ה-PDF
+- המלצות והטקסטים הקבועים מנוהלים בקוד
 
-## Deploy on Vercel
+## Production Deployment (Vercel)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Import לפרויקט ב-Vercel מהריפו ב-GitHub.
+2. להגדיר Root Directory ל-`summaries-site`.
+3. Build Command: `npm run build`
+4. Install Command: `npm install`
+5. Deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+אין צורך בהגדרת Environment Variables במצב הנוכחי.
+
+## Notes
+
+- יש קבצי PDF גדולים יחסית בריפו. אם בהמשך יתווספו הרבה קבצים כבדים, מומלץ לשקול אחסון חיצוני (למשל S3 / Cloudinary / R2).

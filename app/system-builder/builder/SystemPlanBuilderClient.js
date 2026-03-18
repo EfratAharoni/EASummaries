@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { matchesCourseTextQuery } from "@/lib/search/courseSearch";
 
 const DIFFICULTY_LABELS = {
@@ -78,24 +78,40 @@ export default function SystemPlanBuilderClient({ courseCatalog, plannerGuide })
     return plannerGuide.find((year) => year.id === selectedYear) || plannerGuide[0];
   }, [plannerGuide, selectedYear]);
 
-  const selectedYearSemesters = selectedYearGuide?.semesters || [];
+  const selectedYearSemesters = useMemo(() => {
+    return selectedYearGuide?.semesters || [];
+  }, [selectedYearGuide]);
 
-  const selectedSemesterGuide = useMemo(() => {
-    return (
-      selectedYearSemesters.find((semester) => semester.id === selectedSemester) ||
-      selectedYearSemesters[0]
-    );
-  }, [selectedSemester, selectedYearSemesters]);
-
-  useEffect(() => {
+  const selectedSemesterId = useMemo(() => {
     const hasSemester = selectedYearSemesters.some(
       (semester) => semester.id === selectedSemester
     );
 
-    if (!hasSemester && selectedYearSemesters[0]) {
-      setSelectedSemester(selectedYearSemesters[0].id);
+    if (hasSemester) {
+      return selectedSemester;
     }
+
+    return selectedYearSemesters[0]?.id || "";
   }, [selectedSemester, selectedYearSemesters]);
+
+  const selectedSemesterGuide = useMemo(() => {
+    return (
+      selectedYearSemesters.find((semester) => semester.id === selectedSemesterId) ||
+      selectedYearSemesters[0]
+    );
+  }, [selectedSemesterId, selectedYearSemesters]);
+
+  function handleYearChange(nextYearId) {
+    setSelectedYear(nextYearId);
+
+    const nextYear = plannerGuide.find((year) => year.id === nextYearId);
+    const nextSemesters = nextYear?.semesters || [];
+    const hasSemester = nextSemesters.some((semester) => semester.id === selectedSemester);
+
+    if (!hasSemester) {
+      setSelectedSemester(nextSemesters[0]?.id || "");
+    }
+  }
 
   const catalogByName = useMemo(() => {
     return new Map(courseCatalog.map((course) => [course.name, course]));
@@ -247,7 +263,7 @@ export default function SystemPlanBuilderClient({ courseCatalog, plannerGuide })
               <span className="builder-field-label">שנה</span>
               <select
                 className="builder-select"
-                onChange={(event) => setSelectedYear(event.target.value)}
+                onChange={(event) => handleYearChange(event.target.value)}
                 value={selectedYear}
               >
                 {plannerGuide.map((year) => (
@@ -263,7 +279,7 @@ export default function SystemPlanBuilderClient({ courseCatalog, plannerGuide })
               <select
                 className="builder-select"
                 onChange={(event) => setSelectedSemester(event.target.value)}
-                value={selectedSemesterGuide?.id || ""}
+                value={selectedSemesterId}
               >
                 {selectedYearSemesters.map((semester) => (
                   <option key={semester.id} value={semester.id}>

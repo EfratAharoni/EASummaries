@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import {
   COURSES,
   DIFFICULTY_META,
@@ -65,24 +65,42 @@ export default function SystemBuilderClient() {
     return SYSTEM_PLANNER_GUIDE.find((year) => year.id === selectedYear) ?? SYSTEM_PLANNER_GUIDE[0];
   }, [selectedYear]);
 
-  const selectedYearSemesters = selectedYearGuide?.semesters ?? [];
+  const selectedYearSemesters = useMemo(() => {
+    return selectedYearGuide?.semesters ?? [];
+  }, [selectedYearGuide]);
 
-  const selectedSemesterGuide = useMemo(() => {
-    return (
-      selectedYearSemesters.find((semester) => semester.id === selectedSemester) ??
-      selectedYearSemesters[0]
-    );
-  }, [selectedSemester, selectedYearSemesters]);
-
-  useEffect(() => {
+  const selectedSemesterId = useMemo(() => {
     const hasSelectedSemester = selectedYearSemesters.some(
       (semester) => semester.id === selectedSemester
     );
 
-    if (!hasSelectedSemester && selectedYearSemesters[0]) {
-      setSelectedSemester(selectedYearSemesters[0].id);
+    if (hasSelectedSemester) {
+      return selectedSemester;
     }
+
+    return selectedYearSemesters[0]?.id ?? "";
   }, [selectedSemester, selectedYearSemesters]);
+
+  const selectedSemesterGuide = useMemo(() => {
+    return (
+      selectedYearSemesters.find((semester) => semester.id === selectedSemesterId) ??
+      selectedYearSemesters[0]
+    );
+  }, [selectedSemesterId, selectedYearSemesters]);
+
+  function handleYearChange(nextYearId) {
+    setSelectedYear(nextYearId);
+
+    const nextYear = SYSTEM_PLANNER_GUIDE.find((year) => year.id === nextYearId);
+    const nextSemesters = nextYear?.semesters ?? [];
+    const hasSelectedSemester = nextSemesters.some(
+      (semester) => semester.id === selectedSemester
+    );
+
+    if (!hasSelectedSemester) {
+      setSelectedSemester(nextSemesters[0]?.id ?? "");
+    }
+  }
 
   const visibleCourses = useMemo(() => {
     const coursesByEffort = filterByEffort(COURSES, selectedEffort);
@@ -148,7 +166,7 @@ export default function SystemBuilderClient() {
                 <span className="builder-field-label">שנה</span>
                 <select
                   className="builder-select"
-                  onChange={(event) => setSelectedYear(event.target.value)}
+                  onChange={(event) => handleYearChange(event.target.value)}
                   value={selectedYear}
                 >
                   {SYSTEM_PLANNER_GUIDE.map((year) => (
@@ -164,7 +182,7 @@ export default function SystemBuilderClient() {
                 <select
                   className="builder-select"
                   onChange={(event) => setSelectedSemester(event.target.value)}
-                  value={selectedSemesterGuide?.id ?? ""}
+                  value={selectedSemesterId}
                 >
                   {selectedYearSemesters.map((semester) => (
                     <option key={semester.id} value={semester.id}>
