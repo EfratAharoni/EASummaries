@@ -156,9 +156,9 @@ export const COURSES = [
   },
   {
     name: "מערכות ספרתיות",
-    difficulty: "hard",
+    difficulty: "medium",
     requiresSemesterEffort: true,
-    detail: "הקורס עצמו ממש קל. המבחן ממש קשה.",
+    detail: "הקורס עצמו ממש קל. המבחן מכשיל וטריקי.",
     effortNote: "תרגילי בית, יחסית קלים.",
   },
   {
@@ -317,7 +317,7 @@ export const COURSES = [
   },
   {
     name: "חישוביות ומורכבות החישובים",
-    difficulty: "medium",
+    difficulty: "hard",
     requiresSemesterEffort: false,
     detail: "קורס קשה, אבל המפתח הוא ללמוד ולתרגל תוך כדי הסמסטר.",
     effortNote: "אין תרגילי בית, אבל חשוב ללמוד ולתרגל לאורך הסמסטר.",
