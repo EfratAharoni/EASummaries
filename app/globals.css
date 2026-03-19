@@ -1895,9 +1895,9 @@ a {
   background:
     radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--landing-accent, #f0a11f) 16%, white) 0%, transparent 28%),
     linear-gradient(180deg, color-mix(in srgb, var(--landing-accent, #f0a11f) 10%, white) 0%, rgb(255 255 255 / 100%) 34%);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.4rem;
-  aspect-ratio: 1 / 1;
   box-shadow: 0 12px 28px rgb(20 33 61 / 7%);
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
@@ -1941,12 +1941,14 @@ a {
 
 .landing-feature-card p {
   margin: 0;
+  flex: 1;
   color: #516282;
   line-height: 1.7;
 }
 
 .landing-feature-cta {
-  margin-top: 0.3rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
   font-size: 0.86rem;
   font-weight: 800;
   color: var(--landing-accent, #a8610e);
