@@ -170,16 +170,16 @@ export const COURSES = [
   },
   {
     name: "אינפי 2",
-    difficulty: "hard",
+    difficulty: "medium",
     requiresSemesterEffort: true,
-    detail: "המשך של אינפי, ולטעמי הרבה יותר קל מאינפי 1.",
+    detail: "המשך של אינפי, ולטעמי הרבה יותר קל מאינפי 1. בכלל שאינפי 1 זה הלם של תחילת תואר. אבל ברגע שמבינים ויודעים על מה מדובר, זה קורס בסדר גמור.",
     effortNote: "תרגילי בית, פחות זמן מאינפי 1.",
   },
   {
     name: "לינארית ב",
-    difficulty: "hard",
+    difficulty: "medium",
     requiresSemesterEffort: true,
-    detail: "קורס קשה אבל בהחלט עביר.",
+    detail: "קורס קשה אבל בהחלט עביר. אם הצלחתם להבין את לינארית א' זה על אותו רעיון.",
     effortNote: "תרגילי בית.",
   },
   {
@@ -240,9 +240,9 @@ export const COURSES = [
   },
   {
     name: "מבוא לתקשורת מחשבים",
-    difficulty: "hard",
+    difficulty: "medium",
     requiresSemesterEffort: false,
-    detail: "תלוי במבחן. בגדול הוא קשה כי זה הרבה חומר ללמוד.",
+    detail: "תלוי במבחן. בגדול הוא קשה כי זה הרבה חומר ללמוד. ברגע שמבינים את החומר ולומדים את השיטות לפתרון תרגילים זה לא קשה בכלל.",
     effortNote: "יש רק 2 בחני אמצע.",
   },
   {

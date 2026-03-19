@@ -2,9 +2,10 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   { href: "/", label: "ראשי" },
+  { href: "/guide", label: "מדריך למתחילים" },
   { href: "/courses", label: "סיכומים" },
   { href: "/recommendations", label: "המלצות" },
-  { href: "/guide", label: "מדריך למתחילים" },
+  { href: "/recordings", label: "הקלטות" },
   { href: "/electives", label: "קורסי רשות" },
   { href: "/system-builder", label: "בניית מערכת" },
 ];
