@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
 
 const NAV_LINKS = [
   { href: "/", label: "ראשי" },
@@ -11,12 +13,28 @@ const NAV_LINKS = [
 ];
 
 export default function SiteNav() {
+  const [open, setOpen] = useState(false);
   return (
-    <nav className="topbar">
+    <nav className={`topbar${open ? " nav-expanded" : ""}`}>
       <span className="brand">לומדים חכם</span>
-      <div className="nav-links">
+      <button
+        className="nav-hamburger"
+        aria-label="תפריט ניווט"
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+      >
+        <span className={`hamburger-line${open ? " open" : ""}`} />
+        <span className={`hamburger-line${open ? " open" : ""}`} />
+        <span className={`hamburger-line${open ? " open" : ""}`} />
+      </button>
+      <div className={`nav-links${open ? " nav-open" : ""}`}>
         {NAV_LINKS.map(({ href, label }) => (
-          <Link key={href} href={href} className="btn secondary">
+          <Link
+            key={href}
+            href={href}
+            className="btn secondary"
+            onClick={() => setOpen(false)}
+          >
             {label}
           </Link>
         ))}

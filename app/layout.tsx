@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Assistant, Fira_Code } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const assistant = Assistant({

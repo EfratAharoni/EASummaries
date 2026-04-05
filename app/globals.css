@@ -72,6 +72,40 @@ a {
   gap: 0.45rem;
 }
 
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  padding: 0.45rem 0.55rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.hamburger-line.open:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-line.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-line.open:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .hero {
   padding: 2rem;
   border-radius: 1.3rem;
@@ -1126,6 +1160,40 @@ a {
   }
 }
 
+/* ── Nav collapses to hamburger at 900px (7 links overflow below this) ── */
+@media (max-width: 900px) {
+  .topbar {
+    border-radius: 1rem;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .nav-hamburger {
+    display: flex;
+    margin-inline-start: auto;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+  }
+
+  .nav-links .btn {
+    text-align: center;
+    width: 100%;
+    border-radius: 0.75rem;
+  }
+}
+
+/* ── Layout fixes for tablet and mobile ── */
 @media (max-width: 720px) {
   .shell {
     width: min(96vw, 1100px);
@@ -1136,14 +1204,13 @@ a {
     padding: 1.3rem;
   }
 
-  .topbar {
-    border-radius: 0.9rem;
-    flex-direction: column;
-    align-items: stretch;
+  .recommendation-card {
+    min-height: unset;
+    max-height: unset;
   }
 
-  .nav-links {
-    justify-content: center;
+  .card-cta-row {
+    flex-wrap: wrap;
   }
 
   .builder-summary {
@@ -1176,6 +1243,52 @@ a {
 
   .pdf-viewer {
     height: 60vh;
+  }
+
+  .guide-list {
+    padding-inline-start: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .summary-head {
+    flex-direction: column;
+  }
+}
+
+/* ── Very small phones (≤480px) ── */
+@media (max-width: 480px) {
+  .topbar {
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.85rem;
+  }
+
+  .hero {
+    padding: 1rem;
+  }
+
+  .card {
+    padding: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .builder-toggle {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 0.6rem 0.9rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.5rem, 8vw, 2rem);
   }
 }
 
@@ -2034,6 +2147,16 @@ a {
   margin: 0;
   color: #7a89a2;
   font-size: 0.84rem;
+}
+
+.footer-link {
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 @media (max-width: 920px) {

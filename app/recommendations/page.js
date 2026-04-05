@@ -114,7 +114,7 @@ const MANUAL_RECOMMENDATIONS = [
       "קורס ממש חשוב בתעשיה.",
       "להשקיע בו.",
       "צריך לדעת בע\"פ את הזמני ריצה, ואלגוריתמים מסוימים של ריצה.",
-      "ממליצה ממש על הפליליסט של מאיר קומר ביוטיוב.",
+      "ממליצה ממש על הפליליסט של מאיר קומר ביוטיוב: https://www.youtube.com/watch?v=744aEtGApzU&list=PL_fdnkHfgpzIypp9JcBKXqGUTwi-YOXXm",
       "יש לו בערוץ כמה פליליסטים על מבנה נתונים. תצפו בהכל.",
       "בנוסף מומלץ הסיכום: https://docs.google.com/document/d/1KzeEyeodtlXyK8_plz54LMAbm_jpSqkIk-6dDJigZso/edit?usp=sharing",
     ],
