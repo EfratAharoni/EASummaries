@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Assistant, Fira_Code } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const assistant = Assistant({
   variable: "--font-assistant",
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="he" dir="rtl">
       <body className={`${assistant.variable} ${firaCode.variable}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
